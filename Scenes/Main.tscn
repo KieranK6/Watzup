@@ -1,0 +1,78 @@
+[gd_scene load_steps=21 format=3 uid="uid://b1y06kqqgqi4l"]
+
+[ext_resource type="PackedScene" uid="uid://dtwn8265m0813" path="res://Scenes/player.tscn" id="1_8up77"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_rnsuf"]
+[ext_resource type="PackedScene" uid="uid://cy5sn5jurvy8g" path="res://Scenes/Prawn.tscn" id="2_h1pwu"]
+[ext_resource type="PackedScene" uid="uid://bug55n2s3bo0g" path="res://Scenes/Pepper.tscn" id="2_ndjfw"]
+[ext_resource type="AudioStream" uid="uid://8m21m2qvu0mb" path="res://Audio/its game time.wav" id="3_gc3f6"]
+[ext_resource type="PackedScene" uid="uid://dl0tasgufw3qu" path="res://Scenes/Nigiri.tscn" id="3_uw73l"]
+[ext_resource type="PackedScene" uid="uid://c4v5ohsvdans8" path="res://Scenes/HUD.tscn" id="4_flfh6"]
+[ext_resource type="AudioStream" uid="uid://dwom6npf2to0t" path="res://Audio/tzup.wav" id="4_x1rjq"]
+[ext_resource type="AudioStream" uid="uid://oqwoxmsvduer" path="res://Audio/wake up in de morning.wav" id="5_2m5jo"]
+[ext_resource type="AudioStream" uid="uid://dgbj3mqlxgskj" path="res://Audio/playa bitta fuzeball.wav" id="8_doitq"]
+[ext_resource type="Texture2D" uid="uid://b7d1dju50fr2n" path="res://Art/btown.PNG" id="8_fnn6g"]
+[ext_resource type="AudioStream" uid="uid://s8esb7172a2q" path="res://Audio/supih lil prick.wav" id="9_015ls"]
+[ext_resource type="AudioStream" uid="uid://bbu35hogxs5xu" path="res://Audio/vape fiend.wav" id="10_fag4m"]
+[ext_resource type="AudioStream" uid="uid://g8ao3jgx23c3" path="res://Audio/pal your a rat.wav" id="11_ugej4"]
+[ext_resource type="AudioStream" uid="uid://cdkv1lfd5fmnb" path="res://Audio/thats me fresh.wav" id="12_7mj5i"]
+[ext_resource type="AudioStream" uid="uid://dml6eotuefbgb" path="res://Audio/revenge.wav" id="13_o8p0g"]
+[ext_resource type="AudioStream" uid="uid://bbr8y1wb4owl0" path="res://Audio/gits locked.wav" id="14_ao7w4"]
+[ext_resource type="AudioStream" uid="uid://bbsvw7f54wjk7" path="res://Audio/I may be fat, but.wav" id="15_058gx"]
+[ext_resource type="AudioStream" uid="uid://c8inrvrc6gi5m" path="res://Audio/eatin a few shweaties.wav" id="16_whvgx"]
+
+[sub_resource type="Curve2D" id="Curve2D_lyffu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_rnsuf")
+mob_scenes = Array[PackedScene]([ExtResource("2_ndjfw"), ExtResource("3_uw73l"), ExtResource("2_h1pwu")])
+opening_sounds = Array[AudioStream]([ExtResource("3_gc3f6"), ExtResource("4_x1rjq"), ExtResource("5_2m5jo"), ExtResource("8_doitq")])
+kills = Array[AudioStream]([ExtResource("9_015ls"), ExtResource("10_fag4m"), ExtResource("11_ugej4"), ExtResource("12_7mj5i")])
+deaths = Array[AudioStream]([ExtResource("13_o8p0g"), ExtResource("14_ao7w4"), ExtResource("15_058gx"), ExtResource("16_whvgx")])
+
+[node name="Player" parent="." instance=ExtResource("1_8up77")]
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 450)
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_lyffu")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+
+[node name="HUD" parent="." instance=ExtResource("4_flfh6")]
+
+[node name="GeneralAudio" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+offset_left = -35.0
+offset_top = 3.0
+offset_right = 535.0
+offset_bottom = 734.0
+texture = ExtResource("8_fnn6g")
+
+[node name="AudioCooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="shoot_button" from="HUD" to="Player" method="_on_hud_shoot_button"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="finished" from="GeneralAudio" to="." method="_on_general_audio_finished"]

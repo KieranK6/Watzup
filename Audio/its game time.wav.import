@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://8m21m2qvu0mb"
+path="res://.godot/imported/its game time.wav-2847d344642ac27b5d79b07abe024d9a.sample"
+
+[deps]
+
+source_file="res://Audio/its game time.wav"
+dest_files=["res://.godot/imported/its game time.wav-2847d344642ac27b5d79b07abe024d9a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

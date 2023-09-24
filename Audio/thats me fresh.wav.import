@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cdkv1lfd5fmnb"
+path="res://.godot/imported/thats me fresh.wav-e7e6364d7f3a37a16a8b2f938a6fdc8b.sample"
+
+[deps]
+
+source_file="res://Audio/thats me fresh.wav"
+dest_files=["res://.godot/imported/thats me fresh.wav-e7e6364d7f3a37a16a8b2f938a6fdc8b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

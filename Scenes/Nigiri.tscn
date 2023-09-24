@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl0tasgufw3qu"]
+
+[ext_resource type="PackedScene" uid="uid://xmufce2cwy13" path="res://Scenes/mob.tscn" id="1_y5gql"]
+[ext_resource type="Texture2D" uid="uid://mi2og3w4yj6e" path="res://Art/nigiri01.png" id="2_2vt5e"]
+[ext_resource type="Texture2D" uid="uid://bvdfesdi845rf" path="res://Art/nigiri02.png" id="3_wkwsa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0nf1o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2vt5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wkwsa")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Mob" instance=ExtResource("1_y5gql")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_0nf1o")
+animation = &"walk"
+frame_progress = 0.748702
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(3, 3.275)

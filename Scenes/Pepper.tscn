@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bug55n2s3bo0g"]
+
+[ext_resource type="PackedScene" uid="uid://xmufce2cwy13" path="res://Scenes/mob.tscn" id="1_kheqd"]
+[ext_resource type="Texture2D" uid="uid://cem706wn3rclh" path="res://Art/pepper01.png" id="2_7f613"]
+[ext_resource type="Texture2D" uid="uid://dd0xpmpa1q1mk" path="res://Art/pepper02.png" id="3_2cj6t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yytfi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7f613")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2cj6t")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Mob" instance=ExtResource("1_kheqd")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_yytfi")
+animation = &"walk"
+frame_progress = 0.630586

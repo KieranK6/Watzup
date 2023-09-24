@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy5sn5jurvy8g"]
+
+[ext_resource type="PackedScene" uid="uid://xmufce2cwy13" path="res://Scenes/mob.tscn" id="1_a2l15"]
+[ext_resource type="Texture2D" uid="uid://dt6plmfq720w2" path="res://Art/prawn01.png" id="2_rtv4u"]
+[ext_resource type="Texture2D" uid="uid://cueowht0y244w" path="res://Art/prawn02.png" id="3_wfshp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nnl5i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rtv4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wfshp")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Mob" instance=ExtResource("1_a2l15")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_nnl5i")
+animation = &"walk"
+frame_progress = 0.769099

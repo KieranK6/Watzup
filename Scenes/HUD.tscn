@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4v5ohsvdans8"]
+
+[ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_tyuwh"]
+[ext_resource type="FontFile" uid="uid://6ojgi31swwyx" path="res://fonts/Xolonium-Regular.ttf" id="2_q6krc"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://joystick/virtual_joystick.tscn" id="3_6gc0i"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_p6lxm"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_2xn60"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_lls0v"]
+events = [SubResource("InputEventAction_2xn60")]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_tyuwh")
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.5
+offset_right = 22.5
+offset_bottom = 81.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_q6krc")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -40.5
+offset_right = 240.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_q6krc")
+theme_override_font_sizes/font_size = 64
+text = "Yuppa"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(141, 480)
+scale = Vector2(199, 99)
+texture_normal = SubResource("CanvasTexture_p6lxm")
+shape_visible = false
+visibility_mode = 1
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -240.0
+offset_right = 100.0
+offset_bottom = -140.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_q6krc")
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_lls0v")
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Virtual Joystick" parent="." instance=ExtResource("3_6gc0i")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = 220.0
+offset_right = 80.0
+offset_bottom = 520.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+
+[connection signal="pressed" from="TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

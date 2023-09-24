@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c8inrvrc6gi5m"
+path="res://.godot/imported/eatin a few shweaties.wav-3e778b30d03aaf89b87d087650285f0d.sample"
+
+[deps]
+
+source_file="res://Audio/eatin a few shweaties.wav"
+dest_files=["res://.godot/imported/eatin a few shweaties.wav-3e778b30d03aaf89b87d087650285f0d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
